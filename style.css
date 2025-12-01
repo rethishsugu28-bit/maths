@@ -1,0 +1,282 @@
+/* --- GLOBAL STYLES & RESET --- */
+:root {
+    /* Stylized Light Academic Palette (White base with Teal and Gold accents) */
+    --color-background: #FFFFFF;    /* Pure White */
+    --color-text: #2C3E50;          /* Dark Navy Grey (Authoritative Text) */
+    --color-primary: #00A6A8;       /* Muted Teal/Cyan (Main Accent) */
+    --color-secondary: #4F6D7A;     /* Soft Slate Blue (Secondary Accent) */
+    --color-tertiary: #FFD166;      /* Soft Gold/Yellow (Highlight) */
+    --color-light-box: #F9F9F9;     /* Off-White for boxes/contrast */
+    --color-border: #E8E8E8;        /* Ultra Light Border */
+    
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Merriweather', serif; 
+    --font-code: 'Roboto Mono', monospace;
+    
+    --transition-speed: 0.5s; 
+    --shadow-depth: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, pronounced shadow */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body); 
+    background-color: var(--color-background); 
+    color: var(--color-text);
+    line-height: 1.8; 
+    overflow-x: hidden;
+    /* Elegant site entrance transition */
+    opacity: 0;
+    animation: academicEntrance 1.2s forwards;
+}
+
+@keyframes academicEntrance {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* --- TYPOGRAPHY & HEADINGS --- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-text);
+}
+
+.project-title {
+    font-size: 3.5rem; 
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: left;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--color-border);
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--color-tertiary); /* Soft Gold Highlight */
+    letter-spacing: 5px; 
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: var(--font-heading); 
+}
+
+.abstract, .large-text {
+    font-size: 1.15rem;
+    margin-bottom: 30px;
+    max-width: 900px;
+    color: var(--color-text);
+}
+
+.padding-note {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    border-left: 5px solid var(--color-primary); 
+    background-color: var(--color-light-box); 
+    color: var(--color-text);
+    font-family: var(--font-code); 
+    border-radius: 4px;
+}
+
+.callout {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
+    border: 2px solid var(--color-secondary);
+    padding: 20px;
+    display: block;
+    border-radius: 6px;
+    background-color: #F0F4F7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    height: 50vh; 
+    background-color: var(--color-light-box); 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+    border-bottom: 6px solid var(--color-primary); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- SECTION STYLING --- */
+.content-section {
+    padding: 60px 0;
+}
+.light-bg {
+    background-color: var(--color-light-box); 
+}
+.dark-bg { 
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+
+hr {
+    border: none;
+    border-top: 1px dashed var(--color-border); 
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* --- FEATURE BOXES (Data Modules) --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.feature-box {
+    padding: 25px;
+    background-color: var(--color-light-box); 
+    border-radius: 8px; 
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-speed); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+}
+
+.feature-box:hover {
+    transform: translateY(-8px); 
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-depth); 
+}
+
+.math-code {
+    display: block;
+    background-color: #E9ECEF; 
+    color: var(--color-secondary);
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 1.2rem; 
+    text-align: center;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-code); 
+}
+
+/* --- ALGORITHM BOXES (Prominent) --- */
+.algorithm-box {
+    padding: 35px;
+    background-color: var(--color-light-box);
+    border: 3px solid var(--color-primary); 
+    border-radius: 10px; 
+    max-width: 750px;
+    margin: 40px auto;
+    text-align: center;
+    transition: all var(--transition-speed);
+}
+
+.algorithm-box:hover {
+    transform: perspective(1000px) scale(1.005) rotateX(1deg); 
+    box-shadow: 0 0 18px rgba(0, 166, 168, 0.4); 
+}
+
+.formula {
+    display: inline-block;
+    background-color: var(--color-primary); 
+    color: var(--color-light-box);
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-size: 2.2rem; 
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: var(--font-code); 
+}
+
+/* --- FUTURE SCOPE LIST --- */
+.key-points ul {
+    list-style: none;
+    padding-left: 0;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.key-points li {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--color-tertiary); 
+    border-radius: 4px;
+    font-size: 1.05rem;
+    transition: transform 0.2s ease, background-color 0.2s;
+    font-family: var(--font-body); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.key-points li:hover {
+    transform: translateX(8px);
+    background-color: #F0F4F7; 
+}
+
+/* --- FOOTER --- */
+.footer {
+    padding: 25px;
+    text-align: center;
+    background-color: var(--color-primary); 
+    color: var(--color-light-box);
+    font-size: 1rem;
+    border-top: 1px solid var(--color-secondary);
+    font-family: var(--font-heading); 
+}
+
+/* --- IMAGE/DIAGRAM STYLING --- */
+.diagram-container {
+    margin: 50px auto; 
+    text-align: center;
+    max-width: 90%; 
+    padding: 20px;
+    background-color: var(--color-light-box);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: all var(--transition-speed) ease-in-out; 
+}
+
+.content-diagram {
+    max-width: 100%; 
+    height: auto;
+    display: block; 
+    margin: 0 auto 15px auto; 
+    border-radius: 4px;
+}
+
+figcaption {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    margin-top: 10px;
+    font-style: italic;
+}

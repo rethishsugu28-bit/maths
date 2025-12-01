@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hill Cipher: Polygraphic Substitution Implementation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Montserrat:wght@900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <header class="hero-section" id="hero">
+        <div class="hero-content">
+            <p class="subtitle">COMPREHENSIVE DEVELOPMENT REPORT</p>
+            <h1 class="project-title">The Hill Cipher Implementation</h1>
+            <p class="abstract">This report details the design, implementation, and verification of the **Screener application**, a web-based tool for the Hill Cipher. The project successfully integrated **Python Flask** and **NumPy** to provide a robust, matrix-based cryptographic utility.</p>
+            <div class="algorithm-key">
+                <p>Project Team: Rethish, Praveen, Vishal, Samiksha, Yuvasree, Selvapriya, Pavatharani</p>
+                <p>Modulus: 128 (Full ASCII Support)</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="content-section dark-bg" id="math-core">
+        <div class="container">
+            <h2>PHASE 1: Mathematical Foundations</h2>
+            <p class="large-text">The Hill Cipher operates on linear algebra, transforming plaintext into ciphertext using a **Key matrix (K)**. A critical focus was enforcing strict **Modulo 128 arithmetic** to ensure decryption accuracy across the full ASCII character set.</p>
+            
+            <div class="grid-2">
+                <div class="feature-box">
+                    <h3>Character Encoding & Modulus</h3>
+                    <p>The application uses the full range of ASCII characters. Plaintext characters are mapped to integers in the range **[0, 127]** (Encoding). A modulus (m) of 128 is applied to all results, ensuring the ciphertext is always valid ASCII (Modulus).</p>
+                    <code class="math-code">M $\in$ [0, 127] (mod 128)</code>
+                </div>
+                <div class="feature-box">
+                    <h3>Key Invertibility Condition</h3>
+                    <p>The success of decryption hinges on the existence of $K^{-1}$ (mod 128). The key matrix must be invertible for decryption to succeed.</p>
+                    <ul>
+                        <li>**Condition:** This requires that $\text{GCD}(det(K), 128)$ must equal 1. Since $128 = 2^7$, the determinant must be an odd integer.</li>
+                        <li>**Implementation:** The modular inverse is calculated using the Extended Euclidean Algorithm on the determinant, followed by the classical adjoint matrix method. This calculation is performed entirely within the server logic.</li>
+                    </ul>
+                    <code class="math-code">Example Invertible Key (2x2): $K = \begin{pmatrix} 3 & 5 \\ 2 & 3 \end{pmatrix}$</code>
+                </div>
+            </div>
+            
+            <p class="padding-note">**Padding:** Automatic padding ensures the message length is a multiple of the key dimension (N), essential for matrix multiplication. Padding is automatically stripped during decryption.</p>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="content-section light-bg" id="encryption">
+        <div class="container">
+            <h2>PHASE 2: Encryption - The Matrix Transformation</h2>
+            <p class="large-text">Plaintext vectors (**P**) are transformed by multiplication with the Key matrix (**K**). The NumPy library is utilized for highly efficient linear algebra operations.</p>
+            
+            <figure class="diagram-container">
+                <img src="4.png" alt="High-Level Encryption and Decryption Data Flow" class="content-diagram">
+                <figcaption>Figure 1: High-Level Encryption and Decryption Data Flow (using 4.png)</figcaption>
+            </figure>
+            
+            <div class="algorithm-box">
+                <h3>The Encryption Formula</h3>
+                <p>Plaintext vectors (P) are transformed by the Key matrix (K) to produce the Ciphertext (C).</p>
+                <code class="formula">C = (P K) (mod 128)</code>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="content-section dark-bg" id="decryption">
+        <div class="container">
+            <h2>PHASE 3: Decryption - Reversing the Cipher</h2>
+            <p class="large-text">Ciphertext (**C**) is reversed back into the original Plaintext (**P**) using the **modular inverse of the key** ($K^{-1}$). The inverse is calculated using the Extended Euclidean Algorithm on the determinant.</p>
+            
+            <figure class="diagram-container">
+                <img src="image_f0815e.png" alt="Professional Decryption Formula Display" class="content-diagram">
+                <figcaption>Figure 2: Decryption Formula Visual Aid (using image_f0815e.png)</figcaption>
+            </figure>
+            
+            <div class="algorithm-box">
+                <h3>The Decryption Formula</h3>
+                <p>The original plaintext P is recovered by multiplying the ciphertext C by the modular inverse of the Key $K^{-1}$, modulo 128.</p>
+                <code class="formula">P = (C K<sup>-1</sup>) (mod 128)</code>
+            </div>
+            <p class="callout large-text">**Secure Output Format:** To prevent trivial substitution, the ciphertext is presented as a numerical array (e.g., [69, 58, 47, ...]) rather than a direct string of characters, which is required as input for the decryption function.</p>
+        </div>
+    </section>
+    
+    <hr>
+
+    <section class="content-section light-bg" id="future">
+        <div class="container">
+            <h2>Future Vectors: Enhancements</h2>
+            <p class="large-text">The application's future scope includes crucial enhancements to further improve its utility and demonstration capabilities:</p>
+            <div class="key-points">
+                <ul>
+                    <li>**Automated Key Generation:** Implementation of a utility that guarantees modular invertibility for key creation.</li>
+                    <li>**Frequency Analysis Tool:** Addition of a tool to illustrate cryptanalysis techniques against the cipher.</li>
+                    <li>**Custom Alphabet Mapping:** Expansion to support custom character mapping beyond the standard ASCII range.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Hill Cipher Screener Application - Powered by Python Flask and NumPy &copy; November 2025</p>
+    </footer>
+
+</body>
+</html>
